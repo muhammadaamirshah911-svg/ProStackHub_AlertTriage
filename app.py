@@ -43,8 +43,11 @@ SAMPLE_ALERT_TEMPLATES = [
 
 
 def get_secret(key):
-    if hasattr(st, "secrets") and key in st.secrets:
-        return st.secrets[key]
+    try:
+        if hasattr(st, "secrets") and key in st.secrets:
+            return st.secrets[key]
+    except Exception:
+        pass
     return os.environ.get(key, "")
 
 
